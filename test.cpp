@@ -85,41 +85,82 @@ TEST_F(CollectionTest, AlwaysFail)
 FAIL();
 }
 
-// TODO: Create a test to verify adding a single value to an empty collection
+// Create a test to verify adding a single value to an empty collection
 TEST_F(CollectionTest, CanAddToEmptyVector)
 {
 // is the collection empty?
 // if empty, the size must be 0
-
+ASSERT_TRUE(collection->empty());
 add_entries(1);
 
 // is the collection still empty?
 // if not empty, what must the size be?
+ASSERT_EQ(collection->size(), 1);
 }
 
-// TODO: Create a test to verify adding five values to collection
+// Create a test to verify adding five values to collection
 TEST_F(CollectionTest, CanAddFiveValuesToVector)
-{
+{ASSERT_TRUE(collection->empty());
 add_entries(5);
+
+ASSERT_EQ(collection->size(), 5);
 }
 
-// TODO: Create a test to verify that max size is greater than or equal to size for 0, 1, 5, 10 entries
+// Create a test to verify that max size is greater than or equal to size for 0, 1, 5, 10 entries
+TEST_F(CollectionTest, MaxSizeIsGreater)
+{
+    ASSERT_GE(collection->max_size(),0);
+    ASSERT_GE(collection->max_size(),1);
+    ASSERT_GE(collection->max_size(),5);
+    ASSERT_GE(collection->max_size(),10);
 
-// TODO: Create a test to verify that capacity is greater than or equal to size for 0, 1, 5, 10 entries
+}
 
+// Create a test to verify that capacity is greater than or equal to size for 0, 1, 5, 10 entries
+TEST_F(CollectionTest, CapacityIsGreater) {
+    ASSERT_GE(collection->capacity(), 0);
+    add_entries(1);
+    ASSERT_GE(collection->capacity(), 1);
+    add_entries(4);
+    ASSERT_GE(collection->capacity(), 5);
+    add_entries(5);
+    ASSERT_GE(collection->capacity(), 10);
+}
 // TODO: Create a test to verify resizing increases the collection
+TEST_F(CollectionTest, ResizingIncreasesCollection){
+
+}
 
 // TODO: Create a test to verify resizing decreases the collection
+TEST_F(CollectionTest, ResizingDecreasesCollection){
 
+}
 // TODO: Create a test to verify resizing decreases the collection to zero
+TEST_F(CollectionTest, ResizingDecreasesCollectionToZero){
 
+}
 // TODO: Create a test to verify clear erases the collection
+TEST_F(CollectionTest, ClearErasesCollection){
 
+}
 // TODO: Create a test to verify erase(begin,end) erases the collection
+TEST_F(CollectionTest, EraseBeginEndErasesCollection){
 
+}
 // TODO: Create a test to verify reserve increases the capacity but not the size of the collection
+TEST_F(CollectionTest, ReserveIncreasesCapacityNotSize){
 
+}
 // TODO: Create a test to verify the std::out_of_range exception is thrown when calling at() with an index out of bounds
 // NOTE: This is a negative test
+TEST_F(CollectionTest, OutOfRangeThrown){
 
+}
 // TODO: Create 2 unit tests of your own to test something on the collection - do 1 positive & 1 negative
+TEST_F(CollectionTest, ChoicePositive){
+
+}
+
+TEST_F(CollectionTest, ChoiceNegative){
+
+}
