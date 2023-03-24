@@ -80,10 +80,12 @@ ASSERT_EQ(collection->size(), 0);
 
 /* Comment this test out to prevent the test from running
  * Uncomment this test to see a failure in the test explorer */
-TEST_F(CollectionTest, AlwaysFail)
+/*TEST_F(CollectionTest, AlwaysFail)
 {
 FAIL();
 }
+ */
+
 
 // Create a test to verify adding a single value to an empty collection
 TEST_F(CollectionTest, CanAddToEmptyVector)
@@ -126,41 +128,74 @@ TEST_F(CollectionTest, CapacityIsGreater) {
     add_entries(5);
     ASSERT_GE(collection->capacity(), 10);
 }
-// TODO: Create a test to verify resizing increases the collection
+// Create a test to verify resizing increases the collection
 TEST_F(CollectionTest, ResizingIncreasesCollection){
-
+    ASSERT_EQ(collection->size(),0);
+    collection->resize(1);
+    ASSERT_EQ(collection->size(),1);
 }
 
-// TODO: Create a test to verify resizing decreases the collection
+// Create a test to verify resizing decreases the collection
 TEST_F(CollectionTest, ResizingDecreasesCollection){
-
+    add_entries(2);
+    ASSERT_EQ(collection->size(),2);
+    collection->resize(1);
+    ASSERT_EQ(collection->size(),1);
 }
-// TODO: Create a test to verify resizing decreases the collection to zero
+// Create a test to verify resizing decreases the collection to zero
 TEST_F(CollectionTest, ResizingDecreasesCollectionToZero){
-
+    add_entries(2);
+    ASSERT_EQ(collection->size(),2);
+    collection->resize(0);
+    ASSERT_EQ(collection->size(),0);
 }
-// TODO: Create a test to verify clear erases the collection
+// Create a test to verify clear erases the collection
 TEST_F(CollectionTest, ClearErasesCollection){
-
+    add_entries(2);
+    ASSERT_EQ(collection->size(),2);
+    collection->clear();
+    ASSERT_EQ(collection->size(),0);
 }
-// TODO: Create a test to verify erase(begin,end) erases the collection
+// Create a test to verify erase(begin,end) erases the collection
 TEST_F(CollectionTest, EraseBeginEndErasesCollection){
-
+    add_entries(3);
+    ASSERT_EQ(collection->size(),3);
+    collection->erase(collection->cbegin(),collection->cend());
+    ASSERT_EQ(collection->size(),0);
 }
-// TODO: Create a test to verify reserve increases the capacity but not the size of the collection
+// Create a test to verify reserve increases the capacity but not the size of the collection
 TEST_F(CollectionTest, ReserveIncreasesCapacityNotSize){
-
+    ASSERT_EQ(collection->size(),0);
+    ASSERT_EQ(collection->capacity(),0);
+    collection->reserve(2);
+    ASSERT_EQ(collection->size(),0);
+    ASSERT_EQ(collection->capacity(),2);
 }
-// TODO: Create a test to verify the std::out_of_range exception is thrown when calling at() with an index out of bounds
+// Create a test to verify the std::out_of_range exception is thrown when calling at() with an index out of bounds
 // NOTE: This is a negative test
 TEST_F(CollectionTest, OutOfRangeThrown){
+    add_entries(3);
+    ASSERT_EQ(collection->size(),3);
+    ASSERT_GE(collection->at(1),0);
+    EXPECT_THROW(ASSERT_EQ(collection->at(3),0),std::out_of_range);
+
+
 
 }
-// TODO: Create 2 unit tests of your own to test something on the collection - do 1 positive & 1 negative
-TEST_F(CollectionTest, ChoicePositive){
-
+// Create 2 unit tests of your own to test something on the collection - do 1 positive & 1 negative
+TEST_F(CollectionTest, VerifyAddition){
+    add_entries(1);
+    add_entries(1);
+    ASSERT_GE(collection->at(0)+collection->at(1),0);
 }
 
-TEST_F(CollectionTest, ChoiceNegative){
+TEST_F(CollectionTest, VerifyFailureWhenNotEmpty){
+    add_entries(1);
+    EXPECT_FALSE(collection->empty());
+
+
+
+
+
 
 }
